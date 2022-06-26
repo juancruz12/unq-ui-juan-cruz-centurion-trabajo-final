@@ -6,21 +6,16 @@ import lagarto from ".//images/lagarto.png"
 import piedra from ".//images/piedra.png"
 import spock from ".//images/spock.png"
 import papel from ".//images/papel.png"
-import blanco from ".//images/blanco.png"
-import nada from ".//images/blanco.png"
+import interrogacion from ".//images/interrogacion.png"
 
-
-const elements = [tijera, lagarto,piedra,spock,papel]
-const asd = blanco
 
 const App = () => {
 
-  const [elementsGame, setElements ] = useState([]);
-  const [chosenItem, setChosenItem] = useState(asd);
+  const elementsGame = [tijera, lagarto,piedra,spock,papel]
 
-  useEffect(() => {
-      setElements(elements);
-    })
+  const [chosenItem, setChosenItem] = useState(interrogacion);
+  const [machineItem, setMachineItem] = useState(interrogacion)
+
 
     function selectName(element) {
       if (element.includes("tijera")) {
@@ -33,8 +28,8 @@ const App = () => {
           return "LAGARTO";
       }else if(element.includes("spock")) {
           return "SPOCK";
-      }else if(element.includes("blanco")) {
-          return "Elige una opcion!";
+      }else{
+          return "";
       }
   }
 
@@ -43,7 +38,10 @@ const App = () => {
       setChosenItem(elem);
     }
 
-    {console.log(chosenItem)}
+    const executeGame = () => {
+      setMachineItem(elementsGame[Math.floor(Math.random()*elementsGame.length)])
+    }
+
   return (
     
     <div class="container">
@@ -52,29 +50,32 @@ const App = () => {
               <div className="card-group">
                 <div class="row row-cols-5 row-cols-md-1 g-5">
                   {elementsGame.map(elem => 
-                  <Element onClick = {() => setElementChoosed(elem)} element= {elem} elementName = {selectName(elem)}/>)}
+                  <Element onClick = {() => setElementChoosed(elem)} element= {elem} elementName = {selectName(elem)} message = "Elegir"/>)}
                 </div>
               </div>
             </div>
       
-        <div class="col-md-5">
-           <div class="w-50 p-3">
-              <div class="card text-center" >
-                  <img src={chosenItem}   class="card-img-top" alt="..."/>
-                  <h2 class="card text-center">{`Has elegido: ${selectName(chosenItem)}`}</h2>
-              </div>
-            </div>
-                 
-            <div class="col-md-5">    
+        <div class="col-md-5"> 
+
+          <Element element= {chosenItem} elementName = {`Has elegido: ${selectName(chosenItem)}`} />
+
+          <div class="col-md-5">    
             <div class="text-center">
                   <h1>VERSUS</h1>
             </div>
-            </div>
+          </div>
 
-         </div>
+    
+
+          <Element element= {machineItem} elementName = {`La maquina ha elegido: ${selectName(machineItem)}`} />
+
+          <button onClick={() => executeGame()} class="btn btn-primary" type="button">Ejecutar juego!</button>
+      
+
+        </div>
 
 
-         </div>
+        </div>
     </div>
   )
 }

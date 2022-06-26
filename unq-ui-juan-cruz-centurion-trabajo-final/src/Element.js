@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from 'react';
 
 
-const Element = ({ element, onClick, elementName }) => {
+const Element = ({ element, onClick, elementName, message }) => {
 
 
     return(
@@ -14,7 +14,7 @@ const Element = ({ element, onClick, elementName }) => {
                         <img src={element} class="card-img-top" alt="..."/>
                     
                         <h2 class="card text-center">{elementName}</h2>
-                        <button onClick={onClick} class="btn btn-primary" type="button">{`Elegir ${elementName}`}</button>
+                        {message ? (<button onClick={onClick} class="btn btn-primary" type="button">{message}</button>): undefined}
                     </div>
                 </div>
                 </div>
