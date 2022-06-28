@@ -36,25 +36,22 @@ const App = () => {
       }
   }
     const computerPlay = () => {
-      
-      
-      setMachineItem(elementsGame[Math.floor(Math.random()*elementsGame.length)])
-      compareElements()
+      let elementSelectedByComputer = elementsGame[Math.floor(Math.random()*elementsGame.length)]
+      setMachineItem(elementSelectedByComputer)
+
+      compareElements(elementSelectedByComputer)
     }
 
-    const compareElements = () => {
+    const compareElements = (elementSelectedByComputer) => {
       let winner = ""
-      winner = setWinner(selectWinner(selectName(chosenItem), selectName(machineItem)))
+      winner = setWinner(selectWinner(selectName(chosenItem), selectName(elementSelectedByComputer)))
     }
 
     const selectWinner = (elementPlayer, elementMachine) =>{
-      console.log(elementPlayer)
-      console.log(elementMachine)
 
       setInGame(false)
 
       if (elementPlayer == "TIJERA" && elementMachine == "PAPEL"){
-        console.log("sdasdasd")
         return  "JUGADOR"
       }else if (elementPlayer == "PAPEL" && elementMachine == "PIEDRA"){
         return  "JUGADOR"
@@ -76,7 +73,8 @@ const App = () => {
         return  "JUGADOR"
       }else if (elementPlayer == "PIEDRA" && elementMachine == "TIJERA"){
         return  "JUGADOR"
-      }
+      }else if (elementPlayer == elementMachine){
+        return  "NINGUNO"}else {return "COMPUTER"}
 
 
     }
@@ -106,24 +104,28 @@ const App = () => {
         </div>
 
         <div class="row row-cols-auto">
-            
-          <Element element= {chosenItem} elementName = {`Has elegido: ${selectName(chosenItem)}`} />
 
-          <div class="col-md-5">    
+        <div class="col-md-3">
+          <Element element= {chosenItem} elementName = {`Has elegido: ${selectName(chosenItem)}`} />
+        </div>
+        
+          <div class="col align-self-center">    
+          
             <div class="text-center">
-                  <h1>VERSUS</h1>
-            </div>
-            <div class="text-center">
-                  <h1>{winner}</h1>
+                  <h1> GANADOR: {winner}</h1>
             </div>
           </div>
+         
 
     
+          <div class="col-md-3">
+          <Element element= {machineItem} elementName = {`Adversario ha elegido: ${selectName(machineItem)}`} />
+          </div>
 
-          <Element element= {machineItem} elementName = {`La maquina ha elegido: ${selectName(machineItem)}`} />
-
-          <button onClick={() => computerPlay()} class="btn btn-primary" type="button">Ejecutar juego!</button>
+          <div class="d-grid gap-2 col-1 mx-auto">
+          <button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {!inGame}>Ejecutar juego!</button>
           <button onClick={() => reset()} class="btn btn-primary" type="button">Reset</button>
+          </div>
       
 
 
