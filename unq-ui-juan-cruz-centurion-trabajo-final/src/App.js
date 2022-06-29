@@ -17,6 +17,9 @@ const App = () => {
   const [machineItem, setMachineItem] = useState(interrogacion);
   const [winner, setWinner] = useState("")
   const [inGame, setInGame] = useState(true)
+  const [pointsPlayer, setPointsPlayer] = useState(0)
+  const [pointsComputer, setPointsComputer] = useState(0)
+
 
 
 
@@ -43,8 +46,7 @@ const App = () => {
     }
 
     const compareElements = (elementSelectedByComputer) => {
-      let winner = ""
-      winner = setWinner(selectWinner(selectName(chosenItem), selectName(elementSelectedByComputer)))
+      setWinner(selectWinner(selectName(chosenItem), selectName(elementSelectedByComputer)))
     }
 
     const selectWinner = (elementPlayer, elementMachine) =>{
@@ -52,32 +54,41 @@ const App = () => {
       setInGame(false)
 
       if (elementPlayer == "TIJERA" && elementMachine == "PAPEL"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "PAPEL" && elementMachine == "PIEDRA"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "PIEDRA" && elementMachine == "LAGARTO"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "LAGARTO" && elementMachine == "SPOCK"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "SPOCK" && elementMachine == "TIJERA"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "TIJERA" && elementMachine == "LAGARTO"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "PAPEL" && elementMachine == "PIEDRA"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "LAGARTO" && elementMachine == "PAPEL"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "PAPEL" && elementMachine == "SPOCK"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "SPOCK" && elementMachine == "PIEDRA"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == "PIEDRA" && elementMachine == "TIJERA"){
-        return  "JUGADOR"
+        return playerIsTheWinner()
       }else if (elementPlayer == elementMachine){
-        return  "NINGUNO"}else {return "COMPUTER"}
-
-
+        return  "NINGUNO"}else {return computerIsTheWinner()}
     }
+
+    const playerIsTheWinner = () => {
+      setPointsPlayer(pointsPlayer + 1 )
+      return "JUGADOR"
+    }
+
+    const computerIsTheWinner = () => {
+      setPointsComputer(pointsComputer + 1)
+      return "COMPUTADORA"
+    }
+
 
     const reset = () => {
       setChosenItem(interrogacion)
@@ -88,7 +99,7 @@ const App = () => {
 
     useEffect(() => { 
 
-    }, [machineItem])
+    }, [pointsComputer])
 
   return (
 
@@ -109,10 +120,17 @@ const App = () => {
           <Element element= {chosenItem} elementName = {`Has elegido: ${selectName(chosenItem)}`} />
         </div>
         
-          <div class="col align-self-center">    
+          <div class="col-md-4 align-self-center">    
           
             <div class="text-center">
-                  <h1> GANADOR: {winner}</h1>
+              
+                  <h1> GANADOR:</h1>
+                  <h1>{winner}</h1>
+                  <h2>PUNTOS:</h2>
+                  
+                  <h4> JUGADOR - {pointsPlayer} </h4>
+                  <h4> COMPUTADORA - {pointsComputer} </h4>
+                  
             </div>
           </div>
          
@@ -124,7 +142,7 @@ const App = () => {
 
           <div class="d-grid gap-2 col-1 mx-auto">
           <button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {!inGame}>Ejecutar juego!</button>
-          <button onClick={() => reset()} class="btn btn-primary" type="button">Reset</button>
+          <button onClick={() => reset()} class="btn btn-primary" type="button">Volver a Jugar!</button>
           </div>
       
 
