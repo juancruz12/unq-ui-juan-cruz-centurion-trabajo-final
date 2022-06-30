@@ -97,9 +97,7 @@ const App = () => {
       setInGame(true)
     }
 
-    useEffect(() => { 
 
-    }, [pointsComputer])
 
   return (
 
@@ -141,8 +139,9 @@ const App = () => {
           </div>
 
           <div class="d-grid gap-2 col-1 mx-auto">
-          <button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {!inGame}>Ejecutar juego!</button>
-          <button onClick={() => reset()} class="btn btn-primary" type="button">Volver a Jugar!</button>
+         {/* {chosenItem != interrogacion ? (<button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {!inGame}>Ejecutar juego!</button>): (undefined)} */}
+          <button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {chosenItem == interrogacion}>Ejecutar juego!</button>
+          <button onClick={() => reset()} class="btn btn-primary" type="button" disabled = {inGame}>Volver a Jugar!</button>
           </div>
       
 
