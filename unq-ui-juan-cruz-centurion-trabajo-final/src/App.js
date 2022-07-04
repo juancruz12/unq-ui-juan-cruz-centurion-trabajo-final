@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Element from "./Element";
 import tijera from ".//images/tijera.png"
 import lagarto from ".//images/lagarto.png"
@@ -20,9 +20,6 @@ const App = () => {
   const [pointsPlayer, setPointsPlayer] = useState(0)
   const [pointsComputer, setPointsComputer] = useState(0)
 
-
-
-
     function selectName(element) {
       if (element.includes("tijera")) {
         return "TIJERA";
@@ -37,11 +34,11 @@ const App = () => {
       }else{
           return "";
       }
-  }
+    }
+
     const computerPlay = () => {
       let elementSelectedByComputer = elementsGame[Math.floor(Math.random()*elementsGame.length)]
       setMachineItem(elementSelectedByComputer)
-
       compareElements(elementSelectedByComputer)
     }
 
@@ -50,7 +47,6 @@ const App = () => {
     }
 
     const selectWinner = (elementPlayer, elementMachine) =>{
-
       setInGame(false)
 
       if (elementPlayer == "TIJERA" && elementMachine == "PAPEL"){
@@ -89,7 +85,6 @@ const App = () => {
       return "COMPUTADORA"
     }
 
-
     const reset = () => {
       setChosenItem(interrogacion)
       setMachineItem(interrogacion)
@@ -97,58 +92,54 @@ const App = () => {
       setInGame(true)
     }
 
-
+    const resetPoints = () => {
+      reset()
+      setPointsComputer(0)
+      setPointsPlayer(0)
+    }
 
   return (
-
-    
-    <div class="container">
-
+    <>
+    <div className ="container">
         <div>
             <div className="card-group">
                   {elementsGame.map(elem => (
-                      <Element onClick = {() => setChosenItem(elem)} element= {elem} elementName = {selectName(elem) } message = "Elegir" disabled = {inGame}/>
+                      <Element key ={elem} onClick = {() => setChosenItem(elem)} element= {elem} elementName = {selectName(elem) } message = "Elegir" disabled = {inGame}/>
                   ))}
             </div>
         </div>
 
-        <div class="row row-cols-auto">
+        <div className="row row-cols-auto">
 
-        <div class="col-md-3">
-          <Element element= {chosenItem} elementName = {`Has elegido: ${selectName(chosenItem)}`} />
-        </div>
+          <div className="col-md-3">
+            <Element element= {chosenItem} elementName = {`Has elegido: ${selectName(chosenItem)}`} />
+          </div>
         
-          <div class="col-md-4 align-self-center">    
-          
-            <div class="text-center">
-              
+          <div className="col-md-4 align-self-center">    
+            <div className="text-center">
                   <h1> GANADOR:</h1>
+                  <div className="badge bg-primary text-wrap" >
                   <h1>{winner}</h1>
+                  </div>
                   <h2>PUNTOS:</h2>
-                  
                   <h4> JUGADOR - {pointsPlayer} </h4>
-                  <h4> COMPUTADORA - {pointsComputer} </h4>
-                  
+                  <h4> COMPUTADORA - {pointsComputer} </h4>           
             </div>
           </div>
          
-
-    
-          <div class="col-md-3">
-          <Element element= {machineItem} elementName = {`Adversario ha elegido: ${selectName(machineItem)}`} />
+          <div className="col-md-3">
+            <Element element= {machineItem} elementName = {`Adversario ha elegido: ${selectName(machineItem)}`} />
           </div>
 
-          <div class="d-grid gap-2 col-1 mx-auto">
-         {/* {chosenItem != interrogacion ? (<button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {!inGame}>Ejecutar juego!</button>): (undefined)} */}
-          <button onClick={() => computerPlay()} class="btn btn-primary" type="button" disabled = {chosenItem == interrogacion}>Ejecutar juego!</button>
-          <button onClick={() => reset()} class="btn btn-primary" type="button" disabled = {inGame}>Volver a Jugar!</button>
+          <div className="d-grid gap-2 col-1 mx-auto">
+            <button onClick={() => computerPlay()} className="btn btn-primary" type="button" disabled = {chosenItem == interrogacion}>Ejecutar juego!</button>
+            <button onClick={() => reset()} className="btn btn-primary" type="button" disabled = {inGame}>Elegir otro elemento!</button>
+            <button onClick={() => resetPoints()} className="btn btn-primary" type="button" >Reiniciar</button>
           </div>
-      
-
-
 
         </div>
     </div>
+    </>
   )
 }
 

@@ -2,7 +2,7 @@
 
 ## Creacion del ambiente
 
-1- Instalar NodeJS desde https://nodejs.org/es/download/
+1- Instalar NodeJS en tu computadora desde https://nodejs.org/es/download/
 
 2- Ir a cualquier ruta donde se quiera importar el proyecto.
 
