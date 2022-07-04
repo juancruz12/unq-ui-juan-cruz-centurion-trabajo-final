@@ -9,9 +9,9 @@
 3- Abrir una consola en esa ruta y ejectuar: git clone https://github.com/juancruz12/unq-ui-juan-cruz-centurion-trabajo-final.git
 
 4- Una vez terminada la clonacion de repositorio, ejecutar: 
-    >> cd unq-ui-juan-cruz-centurion-trabajo-final/unq-ui-juan-cruz-centurion-trabajo-final/
-    >> npm install
-    >> npm install bootstrap
+    4.1- cd unq-ui-juan-cruz-centurion-trabajo-final/unq-ui-juan-cruz-centurion-trabajo-final/
+    4.2- npm install
+    4.3- npm install bootstrap
 
 5- Luego ejecutar en la consola: 
-    >> npm run start
+    5.1- npm run start
