@@ -10,8 +10,6 @@
 
 4- Una vez terminada la clonacion de repositorio, ejecutar: cd unq-ui-juan-cruz-centurion-trabajo-final/unq-ui-juan-cruz-centurion-trabajo-final/
 
-5- npm install
+5- npm install bootstrap
 
-6- npm install bootstrap
-
-7- npm run start
+6- npm run start
