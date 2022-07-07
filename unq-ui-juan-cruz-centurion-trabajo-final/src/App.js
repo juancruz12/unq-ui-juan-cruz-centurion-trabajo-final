@@ -61,8 +61,6 @@ const App = () => {
         return playerIsTheWinner()
       }else if (elementPlayer == "TIJERA" && elementMachine == "LAGARTO"){
         return playerIsTheWinner()
-      }else if (elementPlayer == "PAPEL" && elementMachine == "PIEDRA"){
-        return playerIsTheWinner()
       }else if (elementPlayer == "LAGARTO" && elementMachine == "PAPEL"){
         return playerIsTheWinner()
       }else if (elementPlayer == "PAPEL" && elementMachine == "SPOCK"){
