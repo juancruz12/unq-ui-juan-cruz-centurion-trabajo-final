@@ -10,6 +10,8 @@
 
 4- Una vez terminada la clonacion de repositorio, ejecutar: cd unq-ui-juan-cruz-centurion-trabajo-final/unq-ui-juan-cruz-centurion-trabajo-final/
 
-5- npm install bootstrap
+5- git checkout TP-Integrador-Centurion_Juan_Cruz-v1.1
 
-6- npm run start
+6- npm install 
+
+7- npm run start
